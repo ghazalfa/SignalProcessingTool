@@ -3,3 +3,6 @@ pub mod DataType;
 
 //module that performs simple mathematical functions
 pub mod Math;
+
+//module that performs windowing functions
+pub mod Windowing;

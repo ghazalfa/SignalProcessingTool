@@ -4,3 +4,22 @@ pub enum RawData{
     FloatVec(Vec<f32>),
     IntVec(Vec<i32>),
 }
+
+impl RawData{
+
+    fn length(&self) -> usize{
+        match self {
+            RawData::FloatVec(vector) => vector.len(),
+            RawData::IntVec(vector) => vector.len(),
+        }
+    }
+
+    fn clone_of_vector(&self) -> Vec<f32>{
+
+        match self {
+            RawData::FloatVec(vector) => vector.clone(),
+            RawData::IntVec(vector) => vector.iter().map(|&x| x as f32).collect(),
+        }
+
+    }
+}
