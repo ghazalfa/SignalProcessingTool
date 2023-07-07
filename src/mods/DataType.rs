@@ -7,14 +7,9 @@ pub enum RawData{
 
 impl RawData{
 
-    fn length(&self) -> usize{
-        match self {
-            RawData::FloatVec(vector) => vector.len(),
-            RawData::IntVec(vector) => vector.len(),
-        }
-    }
+    
 
-    fn clone_of_vector(&self) -> Vec<f32>{
+    pub fn clone_vector(&self) -> Vec<f32>{
 
         match self {
             RawData::FloatVec(vector) => vector.clone(),

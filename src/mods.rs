@@ -6,3 +6,6 @@ pub mod Math;
 
 //module that performs windowing functions
 pub mod Windowing;
+
+pub mod digital_filters;
+

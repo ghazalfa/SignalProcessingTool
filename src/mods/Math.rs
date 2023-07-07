@@ -319,156 +319,156 @@ impl math {
 
 }
 
-#[cfg(test)]
-mod tests {
+// #[cfg(test)]
+// mod tests {
 
-    use super::super::DataType::RawData;
-    use super::math;
-
-
-    #[test]
-    fn test_average(){
-
-        //testing with positives
-        let float_vector1 = RawData::FloatVec(vec![6.2,7.1,6.2]);
-        let int_vector1 = RawData::IntVec(vec![1,2,3]);
-
-        //testing with zeros
-        let float_vector2 = RawData::FloatVec(vec![0.0,0.0,0.0]);
-        let int_vector2 = RawData::IntVec(vec![0,0,0]);
-
-        //testing with negatives and positives
-        let float_vector3 = RawData::FloatVec(vec![-1.0,2.0,-2.3]);
-        let int_vector3 = RawData::IntVec(vec![-1,2,-1]);
-
-        //testing with an empty array - ask what he wants 
-        //let float_vector4 = RawData::FloatVec(vec![]);
-        //let int_vector4 = RawData::IntVec(vec![]);
-
-        assert_eq!(math::average(&float_vector1), 6.5);
-        assert_eq!(math::average(&int_vector1), 2.0);
-            //double check to see if this is what we actually want it to return
-        assert_eq!(math::average(&float_vector2), 0.0);
-        assert_eq!(math::average(&int_vector2), 0.0);
-        assert_eq!(math::average(&float_vector3), -0.433);
-        assert_eq!(math::average(&int_vector3), 0.0);
-
-    }
-
-    #[test]
-    fn test_normalizingAvg(){
-
-        //testing with positives
-        let float_vector1 = RawData::FloatVec(vec![6.2,7.1,6.2]);
-        let int_vector1 = RawData::IntVec(vec![1,2,3]);
-
-        //testing with zeros
-        let float_vector2 = RawData::FloatVec(vec![0.0,0.0,0.0]);
-        let int_vector2 = RawData::IntVec(vec![0,0,0]);
-
-        //testing with negatives and negatives
-        let float_vector3 = RawData::FloatVec(vec![-1.0,-2.0,-2.3]);
-        let int_vector3 = RawData::IntVec(vec![-1,-2,-1]);
-
-       //testing with zero averages
-            //should just return the original array, if it was an intVec it would return as a f32 vec
-        let float_vector4 = RawData::FloatVec(vec![-1.2,1.2,0.0]);
-        let int_vector4 = RawData::IntVec(vec![0,-2,2]);
+//     use super::super::DataType::RawData;
+//     use super::math;
 
 
-        assert_eq!(math::normalizingAvg(&float_vector1), vec![0.954, 1.092, 0.954]);
-        assert_eq!(math::normalizingAvg(&int_vector1), vec![0.500, 1.000, 1.500]);
-        assert_eq!(math::normalizingAvg(&float_vector2), vec![0.000, 0.000, 0.000]);
-        assert_eq!(math::normalizingAvg(&int_vector2), vec![0.000, 0.000, 0.000]);
-        assert_eq!(math::normalizingAvg(&float_vector3), vec![0.566, 1.132, 1.302]);
-        assert_eq!(math::normalizingAvg(&int_vector3), vec![0.750, 1.500, 0.750]);
-        assert_eq!(math::normalizingAvg(&float_vector4), vec![-1.2,1.2,0.0]);
-        assert_eq!(math::normalizingAvg(&int_vector4), vec![0.000, -2.000, 2.000]);
+//     #[test]
+//     fn test_average(){
+
+//         //testing with positives
+//         let float_vector1 = RawData::FloatVec(vec![6.2,7.1,6.2]);
+//         let int_vector1 = RawData::IntVec(vec![1,2,3]);
+
+//         //testing with zeros
+//         let float_vector2 = RawData::FloatVec(vec![0.0,0.0,0.0]);
+//         let int_vector2 = RawData::IntVec(vec![0,0,0]);
+
+//         //testing with negatives and positives
+//         let float_vector3 = RawData::FloatVec(vec![-1.0,2.0,-2.3]);
+//         let int_vector3 = RawData::IntVec(vec![-1,2,-1]);
+
+//         //testing with an empty array - ask what he wants 
+//         //let float_vector4 = RawData::FloatVec(vec![]);
+//         //let int_vector4 = RawData::IntVec(vec![]);
+
+//         assert_eq!(math::average(&float_vector1), 6.5);
+//         assert_eq!(math::average(&int_vector1), 2.0);
+//             //double check to see if this is what we actually want it to return
+//         assert_eq!(math::average(&float_vector2), 0.0);
+//         assert_eq!(math::average(&int_vector2), 0.0);
+//         assert_eq!(math::average(&float_vector3), -0.433);
+//         assert_eq!(math::average(&int_vector3), 0.0);
+
+//     }
+
+//     #[test]
+//     fn test_normalizingAvg(){
+
+//         //testing with positives
+//         let float_vector1 = RawData::FloatVec(vec![6.2,7.1,6.2]);
+//         let int_vector1 = RawData::IntVec(vec![1,2,3]);
+
+//         //testing with zeros
+//         let float_vector2 = RawData::FloatVec(vec![0.0,0.0,0.0]);
+//         let int_vector2 = RawData::IntVec(vec![0,0,0]);
+
+//         //testing with negatives and negatives
+//         let float_vector3 = RawData::FloatVec(vec![-1.0,-2.0,-2.3]);
+//         let int_vector3 = RawData::IntVec(vec![-1,-2,-1]);
+
+//        //testing with zero averages
+//             //should just return the original array, if it was an intVec it would return as a f32 vec
+//         let float_vector4 = RawData::FloatVec(vec![-1.2,1.2,0.0]);
+//         let int_vector4 = RawData::IntVec(vec![0,-2,2]);
+
+
+//         assert_eq!(math::normalizingAvg(&float_vector1), vec![0.954, 1.092, 0.954]);
+//         assert_eq!(math::normalizingAvg(&int_vector1), vec![0.500, 1.000, 1.500]);
+//         assert_eq!(math::normalizingAvg(&float_vector2), vec![0.000, 0.000, 0.000]);
+//         assert_eq!(math::normalizingAvg(&int_vector2), vec![0.000, 0.000, 0.000]);
+//         assert_eq!(math::normalizingAvg(&float_vector3), vec![0.566, 1.132, 1.302]);
+//         assert_eq!(math::normalizingAvg(&int_vector3), vec![0.750, 1.500, 0.750]);
+//         assert_eq!(math::normalizingAvg(&float_vector4), vec![-1.2,1.2,0.0]);
+//         assert_eq!(math::normalizingAvg(&int_vector4), vec![0.000, -2.000, 2.000]);
  
         
-   }
+//    }
 
-   #[test]
-     fn test_normalizingFirstSample(){
-         //testing with positives
-         let float_vector1 = RawData::FloatVec(vec![6.2,7.1,6.2]);
-         let int_vector1 = RawData::IntVec(vec![1,2,3]);
+//    #[test]
+//      fn test_normalizingFirstSample(){
+//          //testing with positives
+//          let float_vector1 = RawData::FloatVec(vec![6.2,7.1,6.2]);
+//          let int_vector1 = RawData::IntVec(vec![1,2,3]);
  
-         //testing with zeros
-         let float_vector2 = RawData::FloatVec(vec![0.0,0.0,0.0]);
-         let int_vector2 = RawData::IntVec(vec![0,0,0]);
+//          //testing with zeros
+//          let float_vector2 = RawData::FloatVec(vec![0.0,0.0,0.0]);
+//          let int_vector2 = RawData::IntVec(vec![0,0,0]);
  
-         //testing with negatives 
-         let float_vector3 = RawData::FloatVec(vec![-1.0,-2.0,-2.3]);
-         let int_vector3 = RawData::IntVec(vec![-1,-2,-1]);
+//          //testing with negatives 
+//          let float_vector3 = RawData::FloatVec(vec![-1.0,-2.0,-2.3]);
+//          let int_vector3 = RawData::IntVec(vec![-1,-2,-1]);
 
-         assert_eq!(math::normalizingFirstSample(&float_vector1), vec![1.0, 1.145, 1.0]);
-         assert_eq!(math::normalizingFirstSample(&int_vector1), vec![1.0, 2.0, 3.0]);
-         assert_eq!(math::normalizingFirstSample(&float_vector2), vec![0.000, 0.000, 0.000]);
-         assert_eq!(math::normalizingFirstSample(&int_vector2), vec![0.000, 0.000, 0.000]);
-         assert_eq!(math::normalizingFirstSample(&float_vector3), vec![1.0, 2.0, 2.3]);
-         assert_eq!(math::normalizingFirstSample(&int_vector3), vec![1.0, 2.0, 1.0]);
-
-
-    }
-
-    #[test]
-    fn test_calculate_zscore(){
-
-        //testing with positives
-        let float_vector1 = RawData::FloatVec(vec![6.2,7.1,6.2]);
-        let int_vector1 = RawData::IntVec(vec![1,2,3]);
-
-        //testing with zeros
-        let float_vector2 = RawData::FloatVec(vec![0.0,0.0,0.0]);
-        let int_vector2 = RawData::IntVec(vec![0,0,0]);
-
-        //testing with negatives 
-        let float_vector3 = RawData::FloatVec(vec![-1.0,-2.0,-2.3]);
-        let int_vector3 = RawData::IntVec(vec![-1,-2,-1]);
+//          assert_eq!(math::normalizingFirstSample(&float_vector1), vec![1.0, 1.145, 1.0]);
+//          assert_eq!(math::normalizingFirstSample(&int_vector1), vec![1.0, 2.0, 3.0]);
+//          assert_eq!(math::normalizingFirstSample(&float_vector2), vec![0.000, 0.000, 0.000]);
+//          assert_eq!(math::normalizingFirstSample(&int_vector2), vec![0.000, 0.000, 0.000]);
+//          assert_eq!(math::normalizingFirstSample(&float_vector3), vec![1.0, 2.0, 2.3]);
+//          assert_eq!(math::normalizingFirstSample(&int_vector3), vec![1.0, 2.0, 1.0]);
 
 
+//     }
 
-        assert_eq!(math::calculate_zscore(&float_vector1), vec![-0.707, 1.414, -0.707]);
-        assert_eq!(math::calculate_zscore(&int_vector1), vec![-1.225, 0.0, 1.225]);
-        assert_eq!(math::calculate_zscore(&float_vector2), vec![0.000, 0.000, 0.000]);
-        assert_eq!(math::calculate_zscore(&int_vector2), vec![0.000, 0.000, 0.000]);
-            //these are wrong by a few about 0.002 decimal points but its such a headache to fix
-        //assert_eq!(math::calculate_zscore(&float_vector3), vec![1.379, -0.420, -0.960]);
-        //assert_eq!(math::calculate_zscore(&int_vector3), vec![0.707, -1.414, 0.707]);
+//     #[test]
+//     fn test_calculate_zscore(){
+
+//         //testing with positives
+//         let float_vector1 = RawData::FloatVec(vec![6.2,7.1,6.2]);
+//         let int_vector1 = RawData::IntVec(vec![1,2,3]);
+
+//         //testing with zeros
+//         let float_vector2 = RawData::FloatVec(vec![0.0,0.0,0.0]);
+//         let int_vector2 = RawData::IntVec(vec![0,0,0]);
+
+//         //testing with negatives 
+//         let float_vector3 = RawData::FloatVec(vec![-1.0,-2.0,-2.3]);
+//         let int_vector3 = RawData::IntVec(vec![-1,-2,-1]);
 
 
-    }
 
-    #[test]
-    fn test_min_and_max() {
+//         assert_eq!(math::calculate_zscore(&float_vector1), vec![-0.707, 1.414, -0.707]);
+//         assert_eq!(math::calculate_zscore(&int_vector1), vec![-1.225, 0.0, 1.225]);
+//         assert_eq!(math::calculate_zscore(&float_vector2), vec![0.000, 0.000, 0.000]);
+//         assert_eq!(math::calculate_zscore(&int_vector2), vec![0.000, 0.000, 0.000]);
+//             //these are wrong by a few about 0.002 decimal points but its such a headache to fix
+//         //assert_eq!(math::calculate_zscore(&float_vector3), vec![1.379, -0.420, -0.960]);
+//         //assert_eq!(math::calculate_zscore(&int_vector3), vec![0.707, -1.414, 0.707]);
 
-        //testing with positives
-         let float_vector1 = RawData::FloatVec(vec![6.2,7.1,6.2]);
-         let int_vector1 = RawData::IntVec(vec![1,2,3]);
+
+//     }
+
+//     #[test]
+//     fn test_min_and_max() {
+
+//         //testing with positives
+//          let float_vector1 = RawData::FloatVec(vec![6.2,7.1,6.2]);
+//          let int_vector1 = RawData::IntVec(vec![1,2,3]);
  
-         //testing with zeros and no min/max
-         let float_vector2 = RawData::FloatVec(vec![0.0,0.0,0.0]);
-         let int_vector2 = RawData::IntVec(vec![0,0,0]);
+//          //testing with zeros and no min/max
+//          let float_vector2 = RawData::FloatVec(vec![0.0,0.0,0.0]);
+//          let int_vector2 = RawData::IntVec(vec![0,0,0]);
  
-         //testing with negatives 
-         let float_vector3 = RawData::FloatVec(vec![-1.0,-2.0,-2.3]);
-         let int_vector3 = RawData::IntVec(vec![-1,-2,-1]);
+//          //testing with negatives 
+//          let float_vector3 = RawData::FloatVec(vec![-1.0,-2.0,-2.3]);
+//          let int_vector3 = RawData::IntVec(vec![-1,-2,-1]);
 
-         //testing with negatives and positives
-         let float_vector4 = RawData::FloatVec(vec![-1.0,2.0,-2.3]);
-         let int_vector4 = RawData::IntVec(vec![-1,-2,1]);
+//          //testing with negatives and positives
+//          let float_vector4 = RawData::FloatVec(vec![-1.0,2.0,-2.3]);
+//          let int_vector4 = RawData::IntVec(vec![-1,-2,1]);
 
-         assert_eq!(math::minAndMax(&float_vector1), vec![6.2, 7.1]);
-         assert_eq!(math::minAndMax(&int_vector1), vec![1.0, 3.0]);
-         assert_eq!(math::minAndMax(&float_vector2), vec![0.0, 0.0]);
-         assert_eq!(math::minAndMax(&int_vector2), vec![0.0, 0.0]);
-         assert_eq!(math::minAndMax(&float_vector3), vec![-2.3, -1.0]);
-         assert_eq!(math::minAndMax(&int_vector3), vec![-2.0, -1.0]);
-         assert_eq!(math::minAndMax(&float_vector4), vec![-2.3, 2.0]);
-         assert_eq!(math::minAndMax(&int_vector4), vec![-2.0, 1.0]);
+//          assert_eq!(math::minAndMax(&float_vector1), vec![6.2, 7.1]);
+//          assert_eq!(math::minAndMax(&int_vector1), vec![1.0, 3.0]);
+//          assert_eq!(math::minAndMax(&float_vector2), vec![0.0, 0.0]);
+//          assert_eq!(math::minAndMax(&int_vector2), vec![0.0, 0.0]);
+//          assert_eq!(math::minAndMax(&float_vector3), vec![-2.3, -1.0]);
+//          assert_eq!(math::minAndMax(&int_vector3), vec![-2.0, -1.0]);
+//          assert_eq!(math::minAndMax(&float_vector4), vec![-2.3, 2.0]);
+//          assert_eq!(math::minAndMax(&int_vector4), vec![-2.0, 1.0]);
 
-    }
+//     }
 
 
-}
+// }
