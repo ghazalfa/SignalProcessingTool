@@ -1,5 +1,5 @@
 //imports the data type where the vectors are stored
-use super::DataType::RawData;
+use super::datatype::RawData;
 
 
 //struct that contains functions for simple mathematical functions

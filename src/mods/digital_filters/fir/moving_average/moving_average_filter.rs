@@ -1,3 +1,5 @@
+use crate::mods::datatype::RawData;
+
 
 //struct to create a moving average filter
 pub struct moving_average_filter{
@@ -12,7 +14,10 @@ impl moving_average_filter {
     
      //filter will sum elements i-1, i, and i+1, and then divide by three
      //in the case of the first and last elements, i-1 will be assumed to be zero and i+1 will be assumed to be zera
-    pub fn process(&mut self, input: &Vec<f32> ) -> Vec<f32>{
+    pub fn process(&mut self, input: &RawData ) -> Vec<f32>{
+
+        let input: Vec<f32> =  input.clone_vector();
+
         let size = input.len();
         let size = size;
         let mut output_vec1: Vec<f32> = Vec::new();

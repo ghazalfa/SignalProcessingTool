@@ -1,5 +1,5 @@
 
-use super::DataType::RawData;
+use super::datatype::RawData;
 use dsp::window;
 
 
