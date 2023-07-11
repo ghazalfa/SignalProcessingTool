@@ -19,7 +19,7 @@ impl biquad_butterworth{
 
         //creates coefficients and the filter
         let coeffs = Coefficients::<f32>::from_params(Type::BandPass, sample_rate, cutoff_freq, Q_BUTTERWORTH_F32).unwrap();
-        let mut biquad1: DirectForm1<f32> = DirectForm1::<f32>::new(coeffs);
+        let biquad1: DirectForm1<f32> = DirectForm1::<f32>::new(coeffs);
 
         //returns an instance of the struct
         biquad_butterworth {

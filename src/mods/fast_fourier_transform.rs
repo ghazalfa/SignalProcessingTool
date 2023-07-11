@@ -17,8 +17,8 @@ impl fft{
      }
 
 
-     //converts data from RawData into Vec<Complex<f32>> that has gone through a forward FFT
-     pub fn run_forward(&mut self, input: &RawData ) -> Vec<Complex<f32>>{
+     //converts data from RawData into Vec<f32> that has gone through a forward FFT - only returns real part
+     pub fn run_forward_real(&mut self, input: &RawData ) -> Vec<f32>{
 
         let input: Vec<f32> = input.clone_vector();
 
@@ -33,13 +33,40 @@ impl fft{
         //processing the vector of complex numbers
         fft.process(&mut complex_numbers);
         
-        //returning the mutated vector of complex numbers
-        complex_numbers
+        let mut real_part = Vec::with_capacity(complex_numbers.len());
+        real_part.extend(complex_numbers.iter().map(|c| c.re));
+
+        return real_part
 
      }
 
-     //converts data from RawData into Vec<Complex<f32>> that has gone through an inverse FFT
-     pub fn run_inverse(&mut self, input: &RawData ) -> Vec<Complex<f32>>{
+      //converts data from RawData into Vec<Complex<f32>> that has gone through a forward FFT - only returns imaginary part
+      pub fn run_forward_imag(&mut self, input: &RawData ) -> Vec<f32>{
+
+        let input: Vec<f32> = input.clone_vector();
+
+        let size: usize = input.len();
+
+        //converts the Vec<f32> of data into Vec<Complex<f32>> so that it can be fed through the fft
+        let mut complex_numbers: Vec<Complex<f32>> = input.iter().map(|&x| Complex::new(x, 0.0)).collect();
+        
+        //Returns a Fft instance which computes forward FFTs of size len
+        let fft = self.planner.plan_fft_forward(size);
+
+        //processing the vector of complex numbers
+        fft.process(&mut complex_numbers);
+        
+
+
+        let mut imag_part = Vec::with_capacity(complex_numbers.len());
+        imag_part.extend(complex_numbers.iter().map(|c| c.im));
+
+        imag_part
+
+     }
+
+     //converts data from RawData into Vec<Complex<f32>> that has gone through an inverse FFTn- only returns real part
+     pub fn run_inverse_real(&mut self, input: &RawData ) -> Vec<f32>{
 
         let input: Vec<f32> = input.clone_vector();
 
@@ -54,8 +81,35 @@ impl fft{
         //processing the vector of complex numbers
         fft.process(&mut complex_numbers);
         
-        //returning the mutated vector of complex numbers
-        complex_numbers
+        let mut real_part = Vec::with_capacity(complex_numbers.len());
+        real_part.extend(complex_numbers.iter().map(|c| c.re));
+
+        return real_part
 
      }
+
+      //converts data from RawData into Vec<Complex<f32>> that has gone through an inverse FFT - only returns imaginary part
+      pub fn run_inverse_imag(&mut self, input: &RawData ) ->Vec<f32>{
+
+        let input: Vec<f32> = input.clone_vector();
+
+        let size: usize = input.len();
+
+        //converts the Vec<f32> of data into Vec<Complex<f32>> so that it can be fed through the fft
+        let mut complex_numbers: Vec<Complex<f32>> = input.iter().map(|&x| Complex::new(x, 0.0)).collect();
+        
+        //Returns a Fft instance which computes inverse FFTs of size len
+        let fft = self.planner.plan_fft_inverse(size);
+
+        //processing the vector of complex numbers
+        fft.process(&mut complex_numbers);
+        
+        let mut imag_part = Vec::with_capacity(complex_numbers.len());
+
+        imag_part.extend(complex_numbers.iter().map(|c| c.im));
+
+        return imag_part
+
+     }    
+
 }
