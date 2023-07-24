@@ -15,7 +15,7 @@ ndarray-stats = "0.5.1"
 rustfft = "6.1.0"
 funspace = "0.4.0"
 num = "0.4.1"
-stft = "0.2.0"
+find_peaks = "0.1.5"
 
 
 
