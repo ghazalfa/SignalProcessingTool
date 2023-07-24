@@ -16,31 +16,67 @@ impl moving_average_filter {
      //in the case of the first and last elements, i-1 will be assumed to be zero and i+1 will be assumed to be zera
     pub fn process(&mut self, input: &RawData ) -> Vec<f32>{
 
-        let input: Vec<f32> =  input.clone_vector();
+        match input {
+            RawData::FloatVec(input)=>{
+                let size = input.len();
+                let size = size;
+                let mut output_vec1: Vec<f32> = Vec::with_capacity(input.len());
+        
+                //calculating for the first element
+                let mut element = (input[0]+input[1])/3.0;
+                output_vec1.push(element);
+        
+                //everything inbetween first and last element exclusive
+                for i in 1..size-1{
+        
+                     element = (input[i-1]+input[i]+input[i+1])/3.0;
+                    output_vec1.push(element);
+        
+                }
+        
+                //calculating the last element
+                element = (input[size-2]+input[size-1])/3.0;
+        
+                output_vec1.push(element);
+        
+                //returning the vector
+                output_vec1
 
-        let size = input.len();
-        let size = size;
-        let mut output_vec1: Vec<f32> = Vec::new();
+            }
 
-        //calculating for the first element
-        let mut element = (input[0]+input[1])/3.0;
-        output_vec1.push(element);
+            RawData::IntVec(input) =>{
 
-        //everything inbetween first and last element exclusive
-        for i in 1..size-1{
+                let input: Vec<f32> = input.iter().map(|&x| x as f32).collect();
 
-             element = (input[i-1]+input[i]+input[i+1])/3.0;
-            output_vec1.push(element);
+                let size = input.len();
+                let size = size;
+                let mut output_vec1: Vec<f32> = Vec::with_capacity(input.len());
+        
+                //calculating for the first element
+                let mut element = (input[0]+input[1])/3.0;
+                output_vec1.push(element);
+        
+                //everything inbetween first and last element exclusive
+                for i in 1..size-1{
+        
+                     element = (input[i-1]+input[i]+input[i+1])/3.0;
+                    output_vec1.push(element);
+        
+                }
+        
+                //calculating the last element
+                element = (input[size-2]+input[size-1])/3.0;
+        
+                output_vec1.push(element);
+        
+                //returning the vector
+                output_vec1
 
+            }
         }
 
-        //calculating the last element
-        element = (input[size-2]+input[size-1])/3.0;
 
-        output_vec1.push(element);
 
-        //returning the vector
-        output_vec1
 
     }
 

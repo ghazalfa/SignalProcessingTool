@@ -7,6 +7,14 @@ pub enum RawData{
 
 impl RawData{
 
+    pub fn return_vector(&self) -> Vec<f32>{
+        match self {
+            RawData::FloatVec(vector) => vector.clone(),
+            RawData::IntVec(vector) => vector.iter().map(|&x| x as f32).collect(),
+        }
+
+    }
+
     
 
     pub fn clone_vector(&self) -> Vec<f32>{

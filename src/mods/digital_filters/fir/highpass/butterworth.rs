@@ -6,7 +6,6 @@ use crate::RawData;
 pub struct biquad_butterworth {
     cutoff_freq: Hertz<f32>,
     sample_rate: Hertz<f32>,
-    coeffs: Coefficients<f32>,
     biquad1: DirectForm1<f32>,
 
 }
@@ -17,13 +16,12 @@ impl biquad_butterworth{
     pub fn new(cutoff_freq: Hertz<f32>, sample_rate: Hertz<f32>) -> Self {
          //creates coefficients and the filter        
          let coeffs = Coefficients::<f32>::from_params(Type::HighPass, sample_rate, cutoff_freq, Q_BUTTERWORTH_F32).unwrap();
-        let biquad1: DirectForm1<f32> = DirectForm1::<f32>::new(coeffs);
+         let biquad1: DirectForm1<f32> = DirectForm1::<f32>::new(coeffs);
         
         //returns an instance of the struct
         biquad_butterworth {
                     cutoff_freq,
                     sample_rate,
-                    coeffs,
                     biquad1,
                 }
 
@@ -32,13 +30,32 @@ impl biquad_butterworth{
         
         //processes the data from the RawData struct and returns a vector of the same size containing the filtered data
         pub fn process(&mut self, input: RawData ) -> Vec<f32>{
-            let input = input.clone_vector();
-            let mut output_vec1: Vec<f32> = Vec::new();
-            for elem in input {
-                output_vec1.push(self.biquad1.run(elem));
+            let input_vec = input.clone_vector();
+
+            match input{
+                RawData::FloatVec(input_vec) =>{
+
+                    let mut output_vec1: Vec<f32> = Vec::with_capacity(input_vec.len());
+    
+                    output_vec1.extend(input_vec.into_iter().map(|elem| self.biquad1.run(elem)));
+                
+                    output_vec1
+
+                }
+
+                RawData::IntVec(input_vec) =>{
+
+                    let input_vec: Vec<f32> = input_vec.iter().map(|&x| x as f32).collect();
+
+                    let mut output_vec1: Vec<f32> = Vec::with_capacity(input_vec.len());
+    
+                    output_vec1.extend(input_vec.into_iter().map(|elem| self.biquad1.run(elem)));
+                
+                    output_vec1
+
+                }
             }
 
-            return output_vec1;
         }
 
         //cant do function overloading in rust w/o making it more complicated w traits etc

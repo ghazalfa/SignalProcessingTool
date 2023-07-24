@@ -11,3 +11,8 @@ pub mod digital_filters;
 
 pub mod fast_fourier_transform;
 
+pub mod data_resampling;
+
+pub mod short_time_fourier_transform;
+
+pub mod peak_finder;
