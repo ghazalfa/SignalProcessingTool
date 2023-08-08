@@ -16,6 +16,8 @@ rustfft = "6.1.0"
 funspace = "0.4.0"
 num = "0.4.1"
 find_peaks = "0.1.5"
+sdr = "0.7.0"
+approx = "0.5.1"
 
 
 

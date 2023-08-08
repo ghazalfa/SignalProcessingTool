@@ -276,162 +276,161 @@ impl Windowing{
 
 }
 
-// #[cfg(test)]
-// mod tests {
+#[cfg(test)]
+mod tests {
 
-//     use super::super::DataType::RawData;
-//     use super::Windowing;
-//     use dsp::window;
-//     use assert_approx_eq::assert_approx_eq;
-
-
-//     #[test]
-//     fn test_windowing(){
-
-//         let float_vector1 = RawData::FloatVec(vec![6.2,7.1,6.2]);
-//         let int_vector1 = RawData::IntVec(vec![1,2,3]);
-
-//         assert_eq!(Windowing::windowing(&float_vector1,2), vec![vec![6.2,7.1],vec![6.2]]);
-//         assert_eq!(Windowing::windowing(&int_vector1,2), vec![vec![1.0,2.0],vec![3.0]]);
+    use crate::RawData;
+    use super::Windowing;
+    use assert_approx_eq::assert_approx_eq;
 
 
-//     }
+    #[test]
+    fn test_windowing(){
 
-//     #[test]
-//     fn test_rectangular(){
+        let float_vector1 = RawData::FloatVec(vec![6.2,7.1,6.2]);
+        let int_vector1 = RawData::IntVec(vec![1,2,3]);
 
-//         let float_vector1 = RawData::FloatVec(vec![1.0;3]);
-//         let int_vector1 = RawData::IntVec(vec![1;3]);
-
-
-//         assert_eq!(Windowing::rectangular(&float_vector1, 3), vec![1.0, 1.0, 1.0]);
-//         assert_eq!(Windowing::rectangular(&int_vector1, 3), vec![1.0, 1.0, 1.0]);
-
-//     }
-
-//     #[test]
-//     fn test_blackman(){
-
-//         let float_vector1 = RawData::FloatVec(vec![1.0;5]);
-//         let int_vector1 = RawData::IntVec(vec![1;5]);
-
-//         let mut output = Windowing::blackman(&float_vector1, 5 );
-
-//         assert_approx_eq!(output[0], 0.00687, 1e-5f32);
-//         assert_approx_eq!(output[1], 0.34974, 1e-5f32);
-//         assert_approx_eq!(output[2], 1.0, 1e-5f32);
-//         assert_approx_eq!(output[3], 0.34974, 1e-5f32);
-//         assert_approx_eq!(output[4], 0.00687, 1e-5f32);
-
-//         output = Windowing::blackman(&int_vector1, 5 );
-
-//         assert_approx_eq!(output[0], 0.00687, 1e-5f32);
-//         assert_approx_eq!(output[1], 0.34974, 1e-5f32);
-//         assert_approx_eq!(output[2], 1.0, 1e-5f32);
-//         assert_approx_eq!(output[3], 0.34974, 1e-5f32);
-//         assert_approx_eq!(output[4], 0.00687, 1e-5f32);
+        assert_eq!(Windowing::windowing(&float_vector1,2), vec![vec![6.2,7.1],vec![6.2]]);
+        assert_eq!(Windowing::windowing(&int_vector1,2), vec![vec![1.0,2.0],vec![3.0]]);
 
 
-//     }
+    }
+
+    #[test]
+    fn test_rectangular(){
+
+        let float_vector1 = RawData::FloatVec(vec![1.0;3]);
+        let int_vector1 = RawData::IntVec(vec![1;3]);
+
+
+        assert_eq!(Windowing::rectangular(&float_vector1, 3), vec![1.0, 1.0, 1.0]);
+        assert_eq!(Windowing::rectangular(&int_vector1, 3), vec![1.0, 1.0, 1.0]);
+
+    }
+
+    #[test]
+    fn test_blackman(){
+
+        let float_vector1 = RawData::FloatVec(vec![1.0;5]);
+        let int_vector1 = RawData::IntVec(vec![1;5]);
+
+        let mut output = Windowing::blackman(&float_vector1, 5 );
+
+        assert_approx_eq!(output[0], 0.00687, 1e-5f32);
+        assert_approx_eq!(output[1], 0.34974, 1e-5f32);
+        assert_approx_eq!(output[2], 1.0, 1e-5f32);
+        assert_approx_eq!(output[3], 0.34974, 1e-5f32);
+        assert_approx_eq!(output[4], 0.00687, 1e-5f32);
+
+        output = Windowing::blackman(&int_vector1, 5 );
+
+        assert_approx_eq!(output[0], 0.00687, 1e-5f32);
+        assert_approx_eq!(output[1], 0.34974, 1e-5f32);
+        assert_approx_eq!(output[2], 1.0, 1e-5f32);
+        assert_approx_eq!(output[3], 0.34974, 1e-5f32);
+        assert_approx_eq!(output[4], 0.00687, 1e-5f32);
+
+
+    }
     
-//     #[test]   
-//     fn test_hamming(){
+    #[test]   
+    fn test_hamming(){
 
-//         let float_vector1 = RawData::FloatVec(vec![1.0;5]);
-//         let int_vector1 = RawData::IntVec(vec![1;5]);
+        let float_vector1 = RawData::FloatVec(vec![1.0;5]);
+        let int_vector1 = RawData::IntVec(vec![1;5]);
 
-//         let mut output = Windowing::hamming(&float_vector1, 5 );
+        let mut output = Windowing::hamming(&float_vector1, 5 );
 
-//         assert_approx_eq!(output[0], 0.0869, 1e-3f32);
-//         assert_approx_eq!(output[1], 0.54347825, 1e-3f32);
-//         assert_approx_eq!(output[2], 1.0, 1e-3f32);
-//         assert_approx_eq!(output[3], 0.54347825, 1e-3f32);
-//         assert_approx_eq!(output[4], 0.0869, 1e-3f32);
+        assert_approx_eq!(output[0], 0.0869, 1e-3f32);
+        assert_approx_eq!(output[1], 0.54347825, 1e-3f32);
+        assert_approx_eq!(output[2], 1.0, 1e-3f32);
+        assert_approx_eq!(output[3], 0.54347825, 1e-3f32);
+        assert_approx_eq!(output[4], 0.0869, 1e-3f32);
 
-//         output = Windowing::hamming(&int_vector1, 5 );
+        output = Windowing::hamming(&int_vector1, 5 );
 
-//         assert_approx_eq!(output[0], 0.0869, 1e-3f32);
-//         assert_approx_eq!(output[1], 0.54347825, 1e-3f32);
-//         assert_approx_eq!(output[2], 1.0, 1e-3f32);
-//         assert_approx_eq!(output[3], 0.54347825, 1e-3f32);
-//         assert_approx_eq!(output[4], 0.0869, 1e-3f32);
+        assert_approx_eq!(output[0], 0.0869, 1e-3f32);
+        assert_approx_eq!(output[1], 0.54347825, 1e-3f32);
+        assert_approx_eq!(output[2], 1.0, 1e-3f32);
+        assert_approx_eq!(output[3], 0.54347825, 1e-3f32);
+        assert_approx_eq!(output[4], 0.0869, 1e-3f32);
 
 
-//     }
+    }
 
-//     #[test]   
-//     fn test_hann(){
+    #[test]   
+    fn test_hann(){
 
-//         let float_vector1 = RawData::FloatVec(vec![1.0;5]);
-//         let int_vector1 = RawData::IntVec(vec![1;5]);
+        let float_vector1 = RawData::FloatVec(vec![1.0;5]);
+        let int_vector1 = RawData::IntVec(vec![1;5]);
 
-//         let mut output = Windowing::hann(&float_vector1, 5 );
+        let mut output = Windowing::hann(&float_vector1, 5 );
         
-//         assert_approx_eq!(output[0], 0.0, 1e-5f32);
-//         assert_approx_eq!(output[1], 0.5, 1e-3f32);
-//         assert_approx_eq!(output[2], 1.0, 1e-3f32);
-//         assert_approx_eq!(output[3], 0.5, 1e-3f32);
-//         assert_approx_eq!(output[4], 0.0, 1e-5f32);
+        assert_approx_eq!(output[0], 0.0, 1e-5f32);
+        assert_approx_eq!(output[1], 0.5, 1e-3f32);
+        assert_approx_eq!(output[2], 1.0, 1e-3f32);
+        assert_approx_eq!(output[3], 0.5, 1e-3f32);
+        assert_approx_eq!(output[4], 0.0, 1e-5f32);
 
-//         output = Windowing::hann(&int_vector1, 5 );
+        output = Windowing::hann(&int_vector1, 5 );
 
-//         assert_approx_eq!(output[0], 0.0, 1e-5f32);
-//         assert_approx_eq!(output[1], 0.5, 1e-3f32);
-//         assert_approx_eq!(output[2], 1.0, 1e-3f32);
-//         assert_approx_eq!(output[3], 0.5, 1e-3f32);
-//         assert_approx_eq!(output[4], 0.0, 1e-5f32);
+        assert_approx_eq!(output[0], 0.0, 1e-5f32);
+        assert_approx_eq!(output[1], 0.5, 1e-3f32);
+        assert_approx_eq!(output[2], 1.0, 1e-3f32);
+        assert_approx_eq!(output[3], 0.5, 1e-3f32);
+        assert_approx_eq!(output[4], 0.0, 1e-5f32);
 
 
-//     }
+    }
 
-//     #[test]   
-//     fn test_welch(){
+    #[test]   
+    fn test_welch(){
 
-//         let float_vector1 = RawData::FloatVec(vec![1.0;5]);
-//         let int_vector1 = RawData::IntVec(vec![1;5]);
+        let float_vector1 = RawData::FloatVec(vec![1.0;5]);
+        let int_vector1 = RawData::IntVec(vec![1;5]);
 
-//         let mut output = Windowing::welch(&float_vector1, 5 );
-//         assert_eq!(output, vec![0.0, 0.75, 1.0, 0.75, 0.0]);
+        let mut output = Windowing::welch(&float_vector1, 5 );
+        assert_eq!(output, vec![0.0, 0.75, 1.0, 0.75, 0.0]);
 
-//         output = Windowing::welch(&int_vector1, 5 );
-//         assert_eq!(output, vec![0.0, 0.75, 1.0, 0.75, 0.0]);
+        output = Windowing::welch(&int_vector1, 5 );
+        assert_eq!(output, vec![0.0, 0.75, 1.0, 0.75, 0.0]);
 
-//     }
+    }
    
-//     #[test]   
-//     fn test_sine(){
+    #[test]   
+    fn test_sine(){
 
-//         let float_vector1 = RawData::FloatVec(vec![1.0;5]);
-//         let int_vector1 = RawData::IntVec(vec![1;5]);
+        let float_vector1 = RawData::FloatVec(vec![1.0;5]);
+        let int_vector1 = RawData::IntVec(vec![1;5]);
 
-//         let mut output = Windowing::sine(&float_vector1, 5 );
-//         assert_approx_eq!(output[0], 0.0, 1e-5f32);
-//         assert_approx_eq!(output[1], 0.707, 1e-3f32);
-//         assert_approx_eq!(output[2], 1.0, 1e-3f32);
-//         assert_approx_eq!(output[3], 0.707, 1e-3f32);
-//         assert_approx_eq!(output[4], 0.0, 1e-5f32);
+        let mut output = Windowing::sine(&float_vector1, 5 );
+        assert_approx_eq!(output[0], 0.0, 1e-5f32);
+        assert_approx_eq!(output[1], 0.707, 1e-3f32);
+        assert_approx_eq!(output[2], 1.0, 1e-3f32);
+        assert_approx_eq!(output[3], 0.707, 1e-3f32);
+        assert_approx_eq!(output[4], 0.0, 1e-5f32);
 
-//         output = Windowing::sine(&int_vector1, 5 );
-//         assert_approx_eq!(output[0], 0.0, 1e-5f32);
-//         assert_approx_eq!(output[1], 0.707, 1e-3f32);
-//         assert_approx_eq!(output[2], 1.0, 1e-3f32);
-//         assert_approx_eq!(output[3], 0.707, 1e-3f32);
-//         assert_approx_eq!(output[4], 0.0, 1e-5f32);
-//     }
+        output = Windowing::sine(&int_vector1, 5 );
+        assert_approx_eq!(output[0], 0.0, 1e-5f32);
+        assert_approx_eq!(output[1], 0.707, 1e-3f32);
+        assert_approx_eq!(output[2], 1.0, 1e-3f32);
+        assert_approx_eq!(output[3], 0.707, 1e-3f32);
+        assert_approx_eq!(output[4], 0.0, 1e-5f32);
+    }
     
-//     #[test]
-//     fn test_triangular(){
+    #[test]
+    fn test_triangular(){
 
-//         let float_vector1 = RawData::FloatVec(vec![1.0;5]);
-//         let int_vector1 = RawData::IntVec(vec![1;5]);
+        let float_vector1 = RawData::FloatVec(vec![1.0;5]);
+        let int_vector1 = RawData::IntVec(vec![1;5]);
 
-//         let mut output = Windowing::triangular(&float_vector1, 5 );
-//         assert_eq!(output, vec![0.0, 0.5, 1.0, 0.5, 0.0]);
+        let mut output = Windowing::triangular(&float_vector1, 5 );
+        assert_eq!(output, vec![0.0, 0.5, 1.0, 0.5, 0.0]);
 
 
-//         output = Windowing::triangular(&int_vector1, 5 );
-//         assert_eq!(output, vec![0.0, 0.5, 1.0, 0.5, 0.0]);
+        output = Windowing::triangular(&int_vector1, 5 );
+        assert_eq!(output, vec![0.0, 0.5, 1.0, 0.5, 0.0]);
 
-//     }
+    }
 
-// }
+}

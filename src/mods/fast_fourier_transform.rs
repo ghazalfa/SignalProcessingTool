@@ -146,7 +146,8 @@ impl Fft{
             let mut real_part = Vec::with_capacity(complex_numbers.len());
             real_part.extend(complex_numbers.iter().map(|c| c.re));
     
-            return real_part           
+            return real_part   
+                   
          }
          RawData::IntVec(input)=>{
             let input: Vec<f32> = input.iter().map(|&x| x as f32).collect();

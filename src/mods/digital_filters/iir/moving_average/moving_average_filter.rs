@@ -24,7 +24,7 @@ impl moving_average_filter {
         
                 //calculating for the first element
                 let mut element = (input[0]+input[1])/3.0;
-                output_vec1.push(element);
+                //output_vec1.push(element);
         
                 //everything inbetween first and last element exclusive
                 for i in 1..size-1{
@@ -37,7 +37,7 @@ impl moving_average_filter {
                 //calculating the last element
                 element = (input[size-2]+input[size-1])/3.0;
         
-                output_vec1.push(element);
+                //output_vec1.push(element);
         
                 //returning the vector
                 output_vec1
@@ -54,7 +54,7 @@ impl moving_average_filter {
         
                 //calculating for the first element
                 let mut element = (input[0]+input[1])/3.0;
-                output_vec1.push(element);
+                //output_vec1.push(element);
         
                 //everything inbetween first and last element exclusive
                 for i in 1..size-1{
@@ -67,7 +67,7 @@ impl moving_average_filter {
                 //calculating the last element
                 element = (input[size-2]+input[size-1])/3.0;
         
-                output_vec1.push(element);
+                //output_vec1.push(element);
         
                 //returning the vector
                 output_vec1

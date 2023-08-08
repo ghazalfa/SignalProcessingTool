@@ -5,7 +5,8 @@ use crate::RawData;
 //struct to implement the butterworth notch filter
 
 pub struct biquad_butterworth {
-    cutoff_freq: Hertz<f32>,
+    high_cutoff: Hertz<f32>,
+    low_cutoff: Hertz<f32>,
     sample_rate: Hertz<f32>,
     biquad1: DirectForm1<f32>,
 
@@ -14,15 +15,22 @@ pub struct biquad_butterworth {
 impl biquad_butterworth{
 
     //takes parameters in the Hz form from the biquad crate
-    pub fn new(cutoff_freq: Hertz<f32>, sample_rate: Hertz<f32>) -> Self {
+    pub fn new(high_cutoff: Hertz<f32>, low_cutoff: Hertz<f32>, sample_rate: Hertz<f32>) -> Self {
+
+        let centre_frequency: Hertz<f32> = ((low_cutoff.hz()+high_cutoff.hz())/2.0).hz();
+        let bandpass = high_cutoff.hz()-low_cutoff.hz();
+
+        let q: f32 = centre_frequency.hz()/bandpass;
+
        
         //creates coefficients and the filter        
-        let coeffs = Coefficients::<f32>::from_params(Type::Notch, sample_rate, cutoff_freq, Q_BUTTERWORTH_F32).unwrap();
+        let coeffs = Coefficients::<f32>::from_params(Type::Notch, sample_rate, centre_frequency, q).unwrap();
         let biquad1: DirectForm1<f32> = DirectForm1::<f32>::new(coeffs);
         
         //returns an instance of the struct
         biquad_butterworth {
-                    cutoff_freq,
+                    high_cutoff,
+                    low_cutoff,
                     sample_rate,
                     biquad1,
                 }
@@ -61,14 +69,12 @@ impl biquad_butterworth{
         
         }
 
-       //cant do function overloading in rust w/o making it more complicated w traits etc
-        //thats why i went back and forth from Rawdata to Vec in the filtfilt function
 
         //need to make this more efficient
         pub fn filtfilt(&mut self, input: RawData) -> Vec<f32>{
 
             //cloning the original filter
-            let mut filterclone: biquad_butterworth = super::butterworth::biquad_butterworth::new(self.cutoff_freq, self.sample_rate);
+            let mut filterclone: biquad_butterworth = super::butterworth::biquad_butterworth::new(self.high_cutoff, self.low_cutoff, self.sample_rate);
             
             //filtering the data
             let mut filtered_data: Vec<f32> = self.process(input);

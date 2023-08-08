@@ -1,3 +1,1 @@
-pub mod chebyshev;
-
-pub mod butterworth;
+pub mod moving_average_filter;

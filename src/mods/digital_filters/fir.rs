@@ -1,9 +1,7 @@
-pub mod bandpass;
+pub mod lowpass;
 
 pub mod highpass;
 
-pub mod lowpass;
-
-pub mod moving_average;
+pub mod bandpass;
 
 pub mod notch;
