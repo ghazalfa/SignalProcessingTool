@@ -1,34 +1,84 @@
 
 use biquad::*;
 use crate::RawData;
-//struct to implement the butterworth highpass filter
 
-pub struct biquad_butterworth {
-    cutoff_freq: Hertz<f32>,
-    sample_rate: Hertz<f32>,
-    biquad1: DirectForm1<f32>,
+
+///This struct is used to create and process a Butterworth highpass filter on data provided
+///in the form of `RawData` containing either `f32` or `i32` values.
+/// 
+/// #Issues
+/// 
+/// Very minimal discrepencies from SciPy package in python
+pub struct BiquadButterworth {
+
+    cutoff_freq: Hertz<f32>,   // Frequency of the cutoff rate of filter in Hz
+    sample_rate: Hertz<f32>,   // Frequency of the sampling rate in Hz
+    biquad1: DirectForm1<f32>, // The biquad filter implementation
 
 }
 
-impl biquad_butterworth{
+impl BiquadButterworth{
 
-    //takes parameters in the Hz form from the biquad crate
-    pub fn new(cutoff_freq: Hertz<f32>, sample_rate: Hertz<f32>) -> Self {
-         //creates coefficients and the filter        
-         let coeffs = Coefficients::<f32>::from_params(Type::HighPass, sample_rate, cutoff_freq, Q_BUTTERWORTH_F32).unwrap();
-         let biquad1: DirectForm1<f32> = DirectForm1::<f32>::new(coeffs);
+        /// Creates a new instance of the Butterworth highpass filter given the specified cutoff frequency.
+        ///
+        /// # Arguments
+        ///
+        /// * `cutoff_freq` - The frequency cutoff of the highpass filter in Hz.
+        /// * `sample_rate` - The sample rate of the input data in Hz.
+        ///
+        /// # Returns
+        ///
+        /// A new `biquad_butterworth` instance with the specified parameters.
+        ///
+        /// # Examples
+        ///
+        /// ```rust
+        /// use mods::digital_filters::iir:highpass::butterworth::BiquadButterworth;
+        /// use biquad::Hertz;
+        ///
+        /// let cutoff_freq = 100.00.hz();
+        /// let sample_rate = 44100.0.hz();
+        /// let butterworth_filter = BiquadButterworth::new(low_cutoff, high_cutoff, sample_rate);
+        /// ```
+        /// 
+        pub fn new(cutoff_freq: Hertz<f32>, sample_rate: Hertz<f32>) -> Self {
+             //Creates coefficients and the filter        
+            let coeffs = Coefficients::<f32>::from_params(Type::HighPass, sample_rate, cutoff_freq, Q_BUTTERWORTH_F32).unwrap();
+            let biquad1: DirectForm1<f32> = DirectForm1::<f32>::new(coeffs);
         
-        //returns an instance of the struct
-        biquad_butterworth {
+            //Returns an instance of the struct
+            BiquadButterworth {
                     cutoff_freq,
                     sample_rate,
                     biquad1,
-                }
+            }
 
         }
 
         
-        //processes the data from the RawData struct and returns a vector of the same size containing the filtered data
+        //Processes the data from the RawData struct and returns a vector of the same size containing the filtered data
+        ///
+        /// # Arguments
+        ///
+        /// * `input` - The input data in `RawData` format (either `FloatVec` or `IntVec`).
+        ///
+        /// # Returns
+        ///
+        /// A vector of filtered `f32` data obtained from processing the input.
+        ///
+        /// # Examples
+        ///
+        /// ```
+        /// use mods::digital_filters::iir::highpass::butterworth::BiquadButterworth;
+        /// use crate::RawData;
+        /// let cutoff_freq = 100.00.hz();
+        /// let sample_rate = 44100.0.hz();
+        ///
+        /// let mut butterworth_filter = BiquadButterworth::new(cutoff_freq, sample_rate);
+        /// let input_data = RawData::FloatVec(vec![0.5, 0.8, -0.2, 1.0, -0.7]);
+        /// let filtered_output = butterworth_filter.process(input_data);
+        /// ```
+        /// 
         pub fn process(&mut self, input: RawData ) -> Vec<f32>{
 
             match input{
@@ -57,14 +107,36 @@ impl biquad_butterworth{
 
         }
 
-        //cant do function overloading in rust w/o making it more complicated w traits etc
-        //thats why i went back and forth from Rawdata to Vec in the filtfilt function
 
-        //need to make this more efficient
+        /// Applies the Butterworth highpass filter using forward-backward filtering ("filtfilt").
+        ///
+        /// This method applies the filter in both forward and backward directions to achieve zero-phase
+        /// filtering, which reduces phase distortion.
+        ///
+        /// # Arguments
+        ///
+        /// * `input` - The input data in `RawData` format (either `FloatVec` or `IntVec`).
+        ///
+        /// # Returns
+        ///
+        /// A vector of filtered `f32` data obtained using the filtfilt process.
+        /// # Examples
+        ///
+        /// ```
+        /// use mods::digital_filters::iir::highpass::butterworth::BiquadButterworth;
+        /// use crate::RawData;
+        /// 
+        /// let cutoff_freq = 100.00.hz();
+        /// let sample_rate = 44100.0.hz();
+        ///
+        /// let mut butterworth_filter = BiquadButterworth::new(cutoff_freq,sample_rate);
+        /// let input_data = RawData::FloatVec(vec![0.5, 0.8, -0.2, 1.0, -0.7]);
+        /// let filtered_output = butterworth_filter.filtfilt(input_data);
+        /// ```
         pub fn filtfilt(&mut self, input: RawData) -> Vec<f32>{
 
             //cloning the original filter
-            let mut filterclone: biquad_butterworth = super::butterworth::biquad_butterworth::new(self.cutoff_freq, self.sample_rate);
+            let mut filterclone: BiquadButterworth = super::butterworth::BiquadButterworth::new(self.cutoff_freq, self.sample_rate);
             
             //filtering the data
             let mut filtered_data: Vec<f32> = self.process(input);

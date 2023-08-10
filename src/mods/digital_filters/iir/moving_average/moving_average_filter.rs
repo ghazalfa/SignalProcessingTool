@@ -1,19 +1,62 @@
 use crate::mods::datatype::RawData;
 
 
-//struct to create a moving average filter
-pub struct moving_average_filter{
+/// A struct representing a moving average filter
+///
+///This struct is used to create and process a moving average filter on data provided
+///in the form of `RawData` containing either `f32` or `i32` values
+pub struct MovingAverageFilter{}
 
-}
+impl MovingAverageFilter {
 
-impl moving_average_filter {
+    /// Creates a new instance of the moving average filter
+    /// 
+    /// # Returns
+    /// 
+    /// An instance of the 'moving_average_filter' struct
+    /// 
+    /// # Examples
+    /// ```
+    /// use crate::mods::datatype::RawData;
+    /// use crate::mods::digital_filters::iir::moving_average::MovingAverageFilter;
+    /// 
+    /// let mut filter = moving_average_filter::new();
+    /// 
+    /// ```
 
     pub fn new() -> Self{
-        moving_average_filter {}
+        MovingAverageFilter {}
      }
+
     
-     //filter will sum elements i-1, i, and i+1, and then divide by three
-     //in the case of the first and last elements, i-1 will be assumed to be zero and i+1 will be assumed to be zera
+    /// Processes the input data using a moving average filter and returns the filtered output.
+    ///
+    /// This filter computes the moving average of each element in the input data by summing the
+    /// element itself and its adjacent neighbors (i-1 and i+1), and then dividing by three.
+    ///
+    /// For the first and last elements, since there are no neighbors on one side, the missing neighbor
+    /// is assumed to be zero.
+    ///
+    /// # Arguments
+    ///
+    /// * `input` - A reference to the input data of type `RawData`, which can be either `FloatVec` or `IntVec`.
+    ///
+    /// # Returns
+    ///
+    /// A `Vec<f32>` containing the filtered output data.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use crate::mods::datatype::RawData;
+    /// use crate::mods::digital_filters::iir::moving_average::MovingAverageFilter;
+    /// 
+    /// let mut filter = MovingAverageFilter::new();
+    /// let input_data = RawData::FloatVec(vec![1.0, 2.0, 3.0, 4.0, 5.0]);
+    /// let output = filter.process(&input_data);
+    /// assert_eq!(output, vec![1.0, 2.0, 3.0, 4.0, 5.0]);
+    /// ```
+    /// 
     pub fn process(&mut self, input: &RawData ) -> Vec<f32>{
 
         match input {

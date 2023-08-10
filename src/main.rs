@@ -5,12 +5,13 @@ use std::vec;
 use funspace::chebyshev::ortho::Chebyshev;
 use ndarray::Array1;
 use mods::datatype::RawData;
-use mods::math::math;
+use mods::math::Math;
 use mods::digital_filters::fir;
 use mods::digital_filters::iir::{bandpass,lowpass,highpass,moving_average,notch};
 use mods::fast_fourier_transform::Fft;
 use mods::data_resampling::DataResampling;
-use mods::peak_finder::Peak_Finder;
+use mods::peak_finder::PeakFinder;
+use mods::windowing::Windowing;
 //use mods::short_time_fourier_transform::stft;
 
 use biquad::*;
@@ -21,6 +22,7 @@ use crate::mods::digital_filters::iir::moving_average::moving_average_filter;
 
 
  fn main() {
+
 
   let low_cutoff: Hertz<f32> = 10.hz();
   let high_cutoff: Hertz<f32>  = 50.hz();
@@ -33,7 +35,7 @@ use crate::mods::digital_filters::iir::moving_average::moving_average_filter;
 
   let float_vector1: RawData = RawData::FloatVec(signal);
 
-  let mut filter = notch::butterworth::biquad_butterworth::new(high_cutoff, low_cutoff, sample_rate);
+  let mut filter = notch::butterworth::BiquadButterworth::new(high_cutoff, low_cutoff, sample_rate);
 
 
   let output = filter.process(float_vector1);

@@ -3,13 +3,46 @@ use super::datatype::RawData;
 use dsp::window;
 
 
+/// The `Windowing` struct provides a set of windowing functions for segmenting and preprocessing raw data frames
+/// before applying further signal processing or analysis. Windowing is a common technique used in various fields
+/// such as audio processing, image analysis, and data science.
+///
+/// Each windowing function takes a data `frame` and a specified `size` or `increment`, applies a specific windowing
+/// function to the frame, and returns a vector representing the windowed frame. This process helps reduce artifacts
+/// and improve the quality of subsequent processing, such as spectral analysis or feature extraction.
+///
+/// Supported windowing functions include:
+/// - Rectangular: Provides a basic windowing function with constant amplitude within the specified size.
+/// - Blackman: Applies a Blackman window to the frame, tapering the edges to reduce spectral leakage.
+/// - Hamming: Applies a Hamming window, which balances spectral leakage and side lobe attenuation.
+/// - Hann: Uses a Hann window to improve spectral leakage and reduce side lobes compared to rectangular windows.
+/// - Welch: Applies the Welch window, which reduces noise and provides better frequency domain representation.
+/// - Sine: Uses a sine window to emphasize a particular frequency component in the frame.
+/// - Triangular: Applies a triangular window for simple spectral analysis and smoothing.
+///
+/// Example Usage:
+/// ```rust
+/// let raw_data = RawData::FloatVec(vec![0.1, 0.2, 0.3, 0.4, 0.5, 0.6]);
+/// let window_size = 4;
+/// let windowed_data = Windowing::hann(&raw_data, window_size);
+/// println!("Original Data: {:?}", raw_data);
+/// println!("Windowed Data: {:?}", windowed_data);
+/// ```
 pub struct Windowing{}
 
 impl Windowing{
 
-    /// The `windowing` function takes a `frame` of data type RawData and an `increment` value. It splits the frame
-    /// into sub-vectors of length equal to the increment and returns a vector of these sub-vectors.
-    /// The sub-vectors are represented as `Vec<Vec<f32>>`.
+    
+    /// Applies windowing to a frame of data, splitting it into sub-vectors of a specified increment.
+    ///
+    /// # Parameters
+    ///
+    /// - `frame`: A reference to the input data of type `RawData`, which can be either `FloatVec` or `IntVec`.
+    /// - `increment`: The increment value for splitting the frame into sub-vectors.
+    ///
+    /// # Returns
+    ///
+    /// A vector of sub-vectors, each representing a windowed portion of the input frame.
     pub fn windowing(frame: &RawData, increment: i32) -> Vec<Vec<f32>>{
 
         match frame{
@@ -40,9 +73,16 @@ impl Windowing{
 
     }
 
-    /// The `rectangular` function takes a `frame` of data type RawData and a `size` value. It applies a rectangular
-    /// window of the specified size to the frame and returns a vector representing the windowed frame.
-    /// The windowed frame is represented as `Vec<f32>`.
+    /// Applies a rectangular window of a specified size to a frame of data.
+    ///
+    /// # Parameters
+    ///
+    /// - `frame`: A reference to the input data of type `RawData`, which can be either `FloatVec` or `IntVec`.
+    /// - `size`: The size of the rectangular window.
+    ///
+    /// # Returns
+    ///
+    /// A vector representing the windowed frame.
     pub fn rectangular(frame: &RawData, size: i32)-> Vec<f32>{
 
 
@@ -76,9 +116,17 @@ impl Windowing{
     }
 }
 
-    /// The `blackman` function takes a `frame` of data type RawData and a `size` value. It applies a Blackman
-    /// window of the specified size to the frame and returns a vector representing the windowed frame.
-    // The windowed frame is represented as `Vec<f32>`.
+
+    /// Applies a Blackman window of a specified size to a frame of data.
+    ///
+    /// # Parameters
+    ///
+    /// - `frame`: A reference to the input data of type `RawData`, which can be either `FloatVec` or `IntVec`.
+    /// - `size`: The size of the Blackman window.
+    ///
+    /// # Returns
+    ///
+    /// A vector representing the windowed frame.
     pub fn blackman(frame: &RawData, size: i32) -> Vec<f32>{
 
         match frame{
@@ -109,9 +157,17 @@ impl Windowing{
 
     }
     
-    /// The `hamming` function takes a `frame` of data type RawData and a `size` value. It applies a Hamming
-    /// window of the specified size to the frame and returns a vector representing the windowed frame.
-    /// The windowed frame is represented as `Vec<f32>`
+
+    /// Applies a Hamming window of a specified size to a frame of data.
+    ///
+    /// # Parameters
+    ///
+    /// - `frame`: A reference to the input data of type `RawData`, which can be either `FloatVec` or `IntVec`.
+    /// - `size`: The size of the Hamming window.
+    ///
+    /// # Returns
+    ///
+    /// A vector representing the windowed frame.
     pub fn hamming(frame: &RawData, size: i32) -> Vec<f32>{
 
         match frame{
@@ -142,9 +198,17 @@ impl Windowing{
 
     }
 
-    /// The `hann` function takes a `frame` of data type RawData and a `size` value. It applies a Hann
-    /// window of the specified size to the frame and returns a vector representing the windowed frame.
-    /// The windowed frame is represented as `Vec<f32>`.
+
+    /// Applies a Hann window of a specified size to a frame of data.
+    ///
+    /// # Parameters
+    ///
+    /// - `frame`: A reference to the input data of type `RawData`, which can be either `FloatVec` or `IntVec`.
+    /// - `size`: The size of the Hann window.
+    ///
+    /// # Returns
+    ///
+    /// A vector representing the windowed frame.
     pub fn hann(frame: &RawData, size: i32) -> Vec<f32>{
 
         match frame{
@@ -174,9 +238,16 @@ impl Windowing{
         }
     }
 
-    /// The `welch` function takes a `frame` of data type RawData and a `size` value. It applies a Welch
-    /// window of the specified size to the frame and returns a vector representing the windowed frame.
-    /// The windowed frame is represented as `Vec<f32>`.
+    /// Applies a Welch window of a specified size to a frame of data.
+    ///
+    /// # Parameters
+    ///
+    /// - `frame`: A reference to the input data of type `RawData`, which can be either `FloatVec` or `IntVec`.
+    /// - `size`: The size of the Welch window.
+    ///
+    /// # Returns
+    ///
+    /// A vector representing the windowed frame.
     pub fn welch(frame: &RawData, size: i32) -> Vec<f32>{
 
         match frame{
@@ -207,9 +278,16 @@ impl Windowing{
 
     }
 
-    /// The `sine` function takes a `frame` of data type RawData and a `size` value. It applies a sine
-    /// window of the specified size to the frame and returns a vector representing the windowed frame.
-    /// The windowed frame is represented as `Vec<f32>`.
+    /// Applies a sine window of a specified size to a frame of data.
+    ///
+    /// # Parameters
+    ///
+    /// - `frame`: A reference to the input data of type `RawData`, which can be either `FloatVec` or `IntVec`.
+    /// - `size`: The size of the sine window.
+    ///
+    /// # Returns
+    ///
+    /// A vector representing the windowed frame.
     pub fn sine(frame: &RawData, size: i32) -> Vec<f32>{
 
         match frame{
@@ -239,10 +317,17 @@ impl Windowing{
         }
 
     }
-
-    /// The `triangular` function takes a `frame` of data type RawData and a `size` value. It applies a triangular
-    /// window of the specified size to the frame and returns a vector representing the windowed frame.
-    /// The windowed frame is represented as `Vec<f32>`.
+    
+    /// Applies a triangular window of a specified size to a frame of data.
+    ///
+    /// # Parameters
+    ///
+    /// - `frame`: A reference to the input data of type `RawData`, which can be either `FloatVec` or `IntVec`.
+    /// - `size`: The size of the triangular window.
+    ///
+    /// # Returns
+    ///
+    /// A vector representing the windowed frame.
     pub fn triangular(frame: &RawData, size: i32) -> Vec<f32>{
 
         match frame{
