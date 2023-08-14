@@ -25,7 +25,10 @@ pub struct Math{}
 impl Math {
 
     /// Computes and returns the arithmetic mean (average) of the elements in the provided data vector.
-    /// The return is an `f32` value, rounded to three decimal places.
+    /// 
+    /// # Returns
+    /// 
+    ///  An `f32` value, rounded to three decimal places.
     pub fn average(data: &RawData) -> f32{
 
         match data {
@@ -56,7 +59,10 @@ impl Math {
     }
 
     /// Normalizes the data by dividing each element by the average and returns an f32 vector of normalized values
-    /// Returns a new `Vec<f32>` containing the normalized values. If the computed average is zero,
+    /// 
+    /// # Returns
+    /// 
+    /// A new `Vec<f32>` containing the normalized values. If the computed average is zero,
     /// the original data is returned
     pub fn normalizing_avg (data: &RawData) -> Vec<f32> {
         //normalizing through dividing by avg and returns a vector
@@ -133,9 +139,12 @@ impl Math {
 
     }
 
-    /// Normalizes the data by dividing each element by the first sample and returns an f32 vector of normalized values
-    ///A new `Vec<f32>` containing the normalized values. If the first value is zero,
-    /// the original data is returned.
+    /// Normalizes the data by dividing each element by the first sample 
+    /// 
+    /// # Returns
+    /// 
+    /// A new Vec<f32>  containing the normalized values.
+    /// If the first value is zero, the original data is returned.
     pub fn normalizing_first_sample (data: &RawData) -> Vec<f32> {
         //normalizing through dividing by first sample
 
@@ -215,9 +224,13 @@ impl Math {
 
     }
 
-    ///Computes the z score of each element and returns an f32 vector of normalized values
-    /// A new `Vec<f32>` containing the z-scores for each element. If the standard deviation is zero,
+    ///Computes the z score of each element 
+    /// 
+    /// #Returns
+    ///  
+    /// a new `Vec<f32>` containing the z-scores for each element. If the standard deviation is zero,
     /// the original data is returned
+    ///
     pub fn calculate_zscore (data: &RawData) -> Vec<f32> {
 
         match data{
@@ -292,6 +305,9 @@ impl Math {
     }
     
     /// Determines the minimum and maximum values in the input data vector.
+    /// 
+    /// # Returns 
+    /// 
     /// A new `Vec<f32>` with two elements, where index 0 is the minimum value and index 1 is the maximum value.
     /// If all values are the same, both indices will have the same value.
     pub fn min_and_max (data: &RawData) -> Vec<f32> {

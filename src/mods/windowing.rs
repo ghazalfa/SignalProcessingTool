@@ -45,32 +45,45 @@ impl Windowing{
     /// A vector of sub-vectors, each representing a windowed portion of the input frame.
     pub fn windowing(frame: &RawData, increment: i32) -> Vec<Vec<f32>>{
 
-        match frame{
-            //if the vector is a float vector
-            RawData::FloatVec(vector) => {
+        let vector: Vec<f32> = match frame{
 
-                let sub_vectors: Vec<Vec<f32>> = vector.chunks((increment as usize))
-                                            .map(|chunk| chunk.to_vec())
-                                            .collect();
+            //to_vec.() works but i doubt its efficiency
+            RawData::FloatVec(vector) => {vector.to_vec()}
+            RawData::IntVec(vector) => {vector.iter().map(|&x| x as f32).collect()}
+            
+        };
+
+                 let sub_vectors: Vec<Vec<f32>> = vector.chunks((increment as usize))
+                                                 .map(|chunk| chunk.iter().map(|&x| x as f32).collect())
+                                                 .collect();
+                                            
+        return sub_vectors;                                   
+        
+    
+        // match frame{
+        //     //if the vector is a float vector
+        //     RawData::FloatVec(vector) => {
+
+        //         let sub_vectors: Vec<Vec<f32>> = vector.chunks((increment as usize))
+        //                                     .map(|chunk| chunk.to_vec())
+        //                                     .collect();
                 
-                return sub_vectors;
+        //         return sub_vectors;
 
-            }
+        //     }
 
-            //if the vector is type int
-            RawData::IntVec(vector) => {
+        //     //if the vector is type int
+        //     RawData::IntVec(vector) => {
 
-                let sub_vectors: Vec<Vec<f32>> = vector.chunks((increment as usize))
-                                                .map(|chunk| chunk.iter().map(|&x| x as f32).collect())
-                                                .collect();
+        //         let sub_vectors: Vec<Vec<f32>> = vector.chunks((increment as usize))
+        //                                         .map(|chunk| chunk.iter().map(|&x| x as f32).collect())
+        //                                         .collect();
 
-                return sub_vectors;
+        //         return sub_vectors;
 
-            }
+        //     }
 
-        }
-
-
+        // }
     }
 
     /// Applies a rectangular window of a specified size to a frame of data.
