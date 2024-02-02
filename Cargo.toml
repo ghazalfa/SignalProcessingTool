@@ -18,9 +18,16 @@ num = "0.4.1"
 find_peaks = "0.1.5"
 sdr = "0.7.0"
 approx = "0.5.1"
+criterion = "0.5.1"
+plotters = "0.3.5"
 
 
+[[bench]]
+name = "my_benchmark"
+harness = false
 
+[lib]
+path = "src/main.rs" 
 
 
 

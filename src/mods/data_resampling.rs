@@ -23,10 +23,10 @@ use crate::RawData;
 /// let output_frequency: f32 = 500.0; // Hz
 ///
 /// // Perform resampling by average
-/// let resampled_data_avg = resampler.resampling_by_average(&RawData::FloatVec(input_data, output_frequency, input_frequency);
+/// let resampled_data_avg = resampler.resampling_by_average(&RawData::FloatVec(input_data), output_frequency, input_frequency);
 ///
 /// // Perform resampling by increment
-/// let resampled_data_inc = resampler.resampling_by_increment(&RawData::FloatVec(input_data, output_frequency, input_frequency);
+/// let resampled_data_inc = resampler.resampling_by_increment(&RawData::FloatVec(input_data), output_frequency, input_frequency);
 ///
 /// ```
 /// 
