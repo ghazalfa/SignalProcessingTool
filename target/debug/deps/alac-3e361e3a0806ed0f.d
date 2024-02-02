@@ -1,0 +1,11 @@
+/Users/ghazalfallahpour/shadganlab/SpectraEngine/target/debug/deps/libalac-3e361e3a0806ed0f.rmeta: /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/alac-0.5.0/src/lib.rs /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/alac-0.5.0/src/bitcursor.rs /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/alac-0.5.0/src/dec.rs /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/alac-0.5.0/src/mp4.rs /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/alac-0.5.0/src/reader.rs
+
+/Users/ghazalfallahpour/shadganlab/SpectraEngine/target/debug/deps/libalac-3e361e3a0806ed0f.rlib: /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/alac-0.5.0/src/lib.rs /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/alac-0.5.0/src/bitcursor.rs /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/alac-0.5.0/src/dec.rs /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/alac-0.5.0/src/mp4.rs /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/alac-0.5.0/src/reader.rs
+
+/Users/ghazalfallahpour/shadganlab/SpectraEngine/target/debug/deps/alac-3e361e3a0806ed0f.d: /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/alac-0.5.0/src/lib.rs /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/alac-0.5.0/src/bitcursor.rs /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/alac-0.5.0/src/dec.rs /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/alac-0.5.0/src/mp4.rs /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/alac-0.5.0/src/reader.rs
+
+/Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/alac-0.5.0/src/lib.rs:
+/Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/alac-0.5.0/src/bitcursor.rs:
+/Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/alac-0.5.0/src/dec.rs:
+/Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/alac-0.5.0/src/mp4.rs:
+/Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/alac-0.5.0/src/reader.rs:

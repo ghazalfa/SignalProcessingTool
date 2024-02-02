@@ -1,0 +1,9 @@
+/Users/ghazalfallahpour/shadganlab/SpectraEngine/target/debug/deps/libnum_complex-5c19ebad1fc8bfbd.rmeta: /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/num-complex-0.4.4/src/lib.rs /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/num-complex-0.4.4/src/cast.rs /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/num-complex-0.4.4/src/pow.rs /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/num-complex-0.4.4/src/complex_float.rs /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/num-complex-0.4.4/src/crand.rs
+
+/Users/ghazalfallahpour/shadganlab/SpectraEngine/target/debug/deps/num_complex-5c19ebad1fc8bfbd.d: /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/num-complex-0.4.4/src/lib.rs /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/num-complex-0.4.4/src/cast.rs /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/num-complex-0.4.4/src/pow.rs /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/num-complex-0.4.4/src/complex_float.rs /Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/num-complex-0.4.4/src/crand.rs
+
+/Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/num-complex-0.4.4/src/lib.rs:
+/Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/num-complex-0.4.4/src/cast.rs:
+/Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/num-complex-0.4.4/src/pow.rs:
+/Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/num-complex-0.4.4/src/complex_float.rs:
+/Users/ghazalfallahpour/.cargo/registry/src/index.crates.io-6f17d22bba15001f/num-complex-0.4.4/src/crand.rs:
